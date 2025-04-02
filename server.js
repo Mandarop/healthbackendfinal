@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./src/config/db');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -12,6 +13,8 @@ const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
+app.use(bodyParser.json()); // Extra safeguard for parsing request body
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // CORS middleware (allows requests from different origins)
 app.use(cors());
